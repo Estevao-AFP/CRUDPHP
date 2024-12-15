@@ -1,0 +1,14 @@
+
+require_once "../configs/conexao.php";
+$adm = new Administrador($dbname, $host, $user, $senha);
+
+$funcao = addslashes($_GET['funcao']);
+$adm->$funcao();
+class Administrador
+{
+    private $pdo;
+
+    public function __construct($dbname, $host, $user, $senha)
+    {
+        $this->pdo = new PDO("mysql:dbname=".$dbname.";host=".$host, $user,$senha);    
+    }
